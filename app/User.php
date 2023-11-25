@@ -3,17 +3,55 @@
 
 namespace app;
 
-class User extends Db
+class User extends DB
 {
+    // private $id = null;
+    private $phone;
     private $id;
-    public function __construct($id){
-        $this->id = $id;
+
+    public function __construct($phone)
+    {
+        $this->phone = $phone;
     }
-    
+
+    /***
+        $garden['location'];
+        $garden['area'];
+        $garden['user_id'];
+        $garden['status'];
+        $garden['description'];
+        $garden['price_for_kg'];
+        $garden['pictures'];
+        $garden['filters'];
+     */
+    public function add_garden($garden)
+    {
+        $garden->user_phone = $this->phone;
+
+        $sql = "INSERT INTO `gardens` (`location`, `area`, `user_phone`, `status`, `description`, `price_for_kg`, `pictures`, `filters`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = self::$connection->prepare($sql);
+        
+        // Bind parameters
+        $stmt->bind_param("ssssssss", $garden->location, $garden->area, $garden->user_phone, $garden->status, $garden->description, $garden->price_for_kg, $garden->pictures, $garden->filters);
+        
+        // Execute the statement
+        $stmt->execute();
+        return self::$connection->insert_id;
+    }
+
+    public function get_garden(){
+
+    }
+    public function get_gardens(){
+        $sql = "SELECT * FROM `gardens`";
+        return self::$connection->query($sql)->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function save_or_ignore()
     {
-        if (empty(DB::get_user($this->id))) {
-            return DB::add_user($this->id);
+        if (empty(DB::get_user_id_by_phone($this->phone))) {
+            return DB::add_user($this->phone);
         }
         return 1;
     }
@@ -34,10 +72,6 @@ class User extends Db
         return DB::set_user_fullname($this->id, $name);
     }
 
-    public function set_username($user_id, $username)
-    {
-        return DB::set_username($user_id, $username);
-    }
 
     public function set_phone($phone)
     {
@@ -49,20 +83,8 @@ class User extends Db
         DB::update_user($this->id, $column, $value);
     }
 
-    public function get($column = null)
-    {
-        if (!$column) return DB::get_user($this->id);
-        return DB::get($this->id, $column);
-    }
-
     function get_info(): ?array
     {
         return DB::get_user_info($this->id);
     }
-
-    function add_book($user_id, $data)
-    {
-        return DB::add_book($user_id, $data);
-    }
-
 }

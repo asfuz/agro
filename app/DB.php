@@ -3,15 +3,16 @@
 
 namespace app;
 
-
 use mysqli;
 
 class DB
 {
-    protected static string $db = 'book';
-    protected static string $table = 'users';
-    protected static string $pass = 'zWwDVJz3FSsLsfw';
-    protected static string $user = 'exbook';
+    protected static string $db = DB_NAME;
+    protected static string $table = DB_NAME;
+    protected static string $pass = DB_PASSWORD;
+    protected static string $user = DB_USERNAME;
+    protected static string $db_url = DB_URL;
+    
     protected static mysqli $connection;
 
     public static function setCreditionals($user, $pass)
@@ -22,7 +23,7 @@ class DB
 
     public static function connect()
     {
-        self::$connection = new mysqli('localhost', self::$user, self::$pass, self::$db);
+        self::$connection = new mysqli(self::$db_url, self::$user, self::$pass, self::$db);
     }
 
     public static function get_user_name($user_id)
@@ -36,6 +37,11 @@ class DB
         $result = self::$connection->query("select `phone` from `users` where `user_id` = $user_id");
         return ($result->num_rows == 0) ? false : $result->fetch_assoc()['phone'];
     }
+    public static function get_user_id_by_phone($phone)
+    {
+        $result = self::$connection->query("select `phone` from `users` where `phone` = $phone");
+        return ($result->num_rows == 0) ? false : $result->fetch_assoc()['phone'];
+    }
 
     public static function get_user($user_id)
     {
@@ -47,9 +53,9 @@ class DB
         return self::$connection->query("select * from `users` where `user_id` = $user_id")->fetch_assoc();
     }
 
-    public static function add_user($user_id)
+    public static function add_user($phone)
     {
-        return self::$connection->query("insert into " . self::$table . "(user_id) values($user_id)");
+        return self::$connection->query("insert into " . self::$table . "(phone) values($phone)");
     }
 
     static function set_user_fullname($user_id, $name)
