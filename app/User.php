@@ -40,6 +40,36 @@ class User extends DB
         return self::$connection->insert_id;
     }
 
+    public function generate_garden($garden, $area){
+        // $garden->user_phone = $this->phone;
+
+        $sql = "INSERT INTO `gardens` (`location`, `area`, `user_phone`, `status`, `description`, `price_for_kg`, `pictures`, `filters`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = self::$connection->prepare($sql);
+        
+        $garden->location = $garden->location[rand(0, count($garden->location) - 1)];
+        $garden->user_phone = $garden->user_phone[rand(0, count($garden->user_phone) - 1)];
+        $garden->status = $garden->status[rand(0, count($garden->status) - 1)];
+        $garden->description = $garden->description[rand(0, count($garden->description) - 1)];
+        $garden->price_for_kg = $garden->price_for_kg[rand(0, count($garden->price_for_kg) - 1)];
+        $garden->filters = $garden->filters[rand(0, count($garden->filters) - 1)];
+        $garden->title = $garden->title[rand(0, count($garden->title) - 1)];
+        $pictures = array('apple', 'banana', 'orange', 'grape');
+        
+
+        // Sample array of fruit names
+        $garden->pictures = APP_URL . "/pictures" . '/' . $pictures[rand(0, count($pictures) - 1)] . 'jpg';
+
+        $area = json_encode($area);
+
+        // Bind parameters
+        $stmt->bind_param("ssssssss", $garden->location, $area, $garden->user_phone, $garden->status, $garden->description, $garden->price_for_kg, $garden->pictures, $garden->filters);
+  
+        // Execute the statement
+        $stmt->execute();
+        return self::$connection->insert_id;
+    }
+
     public function get_garden(){
 
     }
