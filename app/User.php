@@ -42,6 +42,8 @@ class User extends DB
 
     public function generate_garden($garden, $area){
         // $garden->user_phone = $this->phone;
+        // $sql = "DELETE * FROM `gardens`";
+
 
         $sql = "INSERT INTO `gardens` (`sort`, `location`, `title`, `area`, `age`,`count`, `user_phone`, `status`, `description`, `price_for_kg`, `pictures`, `filters`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -53,7 +55,7 @@ class User extends DB
         $garden->description = $garden->description[rand(0, count($garden->description) - 1)];
         $garden->price_for_kg = $garden->price_for_kg[rand(0, count($garden->price_for_kg) - 1)];
         $garden->filters = $garden->title;
-        $garden->count = rand(1, 100);
+        $garden->count = rand(1, 5);
         $garden->age = rand(1, 10);
         $garden->sort = $garden->sort[rand(0, count($garden->sort) - 1)];
         // Sample array of fruit names

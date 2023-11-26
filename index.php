@@ -52,7 +52,7 @@ switch ($segment) {
             $garden->filters = array(1, 2, 3, 4,);
             $title = [
                 'olma' => ['qirmizi', 'semerenka', 'Feruza'],
-                'banan' => ['kavendish', 'Lady Finger', 'qizil'],
+                // 'banan' => ['kavendish', 'Lady Finger', 'qizil'],
                 'mandarin' => ['afourer', 'nadorkott'],
                 'uzum' => ['husayni', 'hasayni', 'chillaki', 'kishmish'],
                 'olma ' => ['qirmizi', 'semerenka', 'Feruza'],
