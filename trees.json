@@ -1,0 +1,109 @@
+[
+  {
+    "coordinates": [[71.7125058, 40.5265263]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7094964, 40.527562]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7128223, 40.5278719]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7064655, 40.5274356]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7211908, 40.5214333]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7184711, 40.5199856]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7202252, 40.5183748]],
+    "type": "Point"
+  },
+  {
+    "coordinates": [[71.7222959, 40.5188438]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7232025, 40.5157241]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7218721, 40.5150797]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7197263, 40.5139827]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7248923, 40.514207]],
+    "type": "Point"
+  },
+  {
+    "coordinates": [[71.7263889, 40.5137543]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.722033, 40.5124044]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7210674, 40.5082932]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7222047, 40.5074408]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7210299, 40.506413]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7230737, 40.5064048]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7235726, 40.5060132]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.718691, 40.5051893]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7198873, 40.5034925]],
+    "type": "Point"
+  },
+
+  {
+    "coordinates": [[71.7197639, 40.5024483]],
+    "type": "Point"
+  }
+]

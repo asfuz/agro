@@ -43,7 +43,7 @@ class User extends DB
     public function generate_garden($garden, $area){
         // $garden->user_phone = $this->phone;
 
-        $sql = "INSERT INTO `gardens` (`location`, `title`, `area`, `count`, `user_phone`, `status`, `description`, `price_for_kg`, `pictures`, `filters`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO `gardens` (`sort`, `location`, `title`, `area`, `age`,`count`, `user_phone`, `status`, `description`, `price_for_kg`, `pictures`, `filters`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = self::$connection->prepare($sql);
         
@@ -52,17 +52,18 @@ class User extends DB
         $garden->status = $garden->status[rand(0, count($garden->status) - 1)];
         $garden->description = $garden->description[rand(0, count($garden->description) - 1)];
         $garden->price_for_kg = $garden->price_for_kg[rand(0, count($garden->price_for_kg) - 1)];
-        $garden->filters = $garden->filters[rand(0, count($garden->filters) - 1)];
-        $garden->title = $garden->title[rand(0, count($garden->title) - 1)];
+        $garden->filters = $garden->title;
         $garden->count = rand(1, 100);
-        
+        $garden->age = rand(1, 10);
+        $garden->sort = $garden->sort[rand(0, count($garden->sort) - 1)];
         // Sample array of fruit names
         $garden->pictures = "https://m3574.myxvest.ru/bogbor". "/pictures" . '/' . $garden->title . '.jpg';
 
         $area = json_encode($area);
 
+
         // Bind parameters
-        $stmt->bind_param("sssissssss", $garden->location, $garden->title, $area, $garden->count, $garden->user_phone, $garden->status, $garden->description, $garden->price_for_kg, $garden->pictures, $garden->filters);
+        $stmt->bind_param("ssssiissssss", $garden->sort, $garden->location, $garden->title, $area, $garden->age, $garden->count, $garden->user_phone, $garden->status, $garden->description, $garden->price_for_kg, $garden->pictures, $garden->filters);
   
         // Execute the statement
         $stmt->execute();

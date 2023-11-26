@@ -44,13 +44,24 @@ switch ($segment) {
         foreach ($locations as $area) {
             $garden = $jsonData->garden;
 
-            $garden->location = array("Marg'ilon", "Farg'ona", "Toshkent");
+            $garden->location = array("Marg'ilon", "Farg'ona", "Qo'shtepa", "Qo'shtepa", "Qo'shtepa");
             $garden->user_phone = array('+99890782248', '+998901234567', '+998936587451');
             $garden->status = array('published', 'verified');
             $garden->description = array('pishgan, mazzali', '1 haftada pishadi', 'lorem bor mashetta', 'judayam oz qoldi, atiga 4 kilo', '1 oyda pishadi');
             $garden->price_for_kg = array("100ming so'm", "10000 so'm");
             $garden->filters = array(1, 2, 3, 4,);
-            $garden->title = array('olma', 'banan', 'mandarin', 'uzum');
+            $title = [
+                'olma' => ['qirmizi', 'semerenka', 'Feruza'],
+                'banan' => ['kavendish', 'Lady Finger', 'qizil'],
+                'mandarin' => ['afourer', 'nadorkott'],
+                'uzum' => ['husayni', 'hasayni', 'chillaki', 'kishmish'],
+                'olma ' => ['qirmizi', 'semerenka', 'Feruza'],
+                "o'rik" => ['isfarak', 'subhona', "oq o'rik"],
+                'anor' => ['tuyatish', 'oq dona', 'achiq don'],
+                'gilos' => ['qora gilos', 'bahor', 'sarvi-surhoni']
+            ];
+            $garden->title = array_rand($title);
+            $garden->sort = $title[$garden->title];
 
             $garden = $user->generate_garden($garden, $area);
         }
