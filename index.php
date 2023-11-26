@@ -60,7 +60,7 @@ switch ($segment) {
                 'anor' => ['tuyatish', 'oq dona', 'achiq don'],
                 'gilos' => ['qora gilos', 'bahor', 'sarvi-surhoni']
             ];
-            $garden->title = array_rand($title);
+            $garden->title = trim(array_rand($title));
             $garden->sort = $title[$garden->title];
 
             $garden = $user->generate_garden($garden, $area);
